@@ -6,7 +6,8 @@ import { ImageList } from "./components";
 
 class App extends Component {
   state = {
-    divided: []
+    divided: [],
+    Results: []
   };
   onSearchSubmit = async term => {
     const response = await unsplash.get(
@@ -21,16 +22,17 @@ class App extends Component {
         ? divided.push(response.data.results.slice(i, i + 4))
         : divided.push(response.data.results.slice(i));
     }
-    this.setState({ divided: [...divided] });
+    this.setState({ divided: [...divided], Results: response.data.results });
   };
 
   render() {
+    console.log(this.state.Results);
     return (
       <div className="ui container" style={{ marginTop: "10px" }}>
         <SearchBar onSubmit={this.onSearchSubmit} />
         <br />
 
-        <ImageList divided={this.state.divided} />
+        <ImageList Results={this.state.Results} divided={this.state.divided} />
       </div>
     );
   }

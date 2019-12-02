@@ -52,7 +52,18 @@ class ImageList extends Component {
   };
 
   render() {
-    return <div className="image-list">{this.renderFunctionality()}</div>;
+    return (
+      <div className="image-list">
+        {this.props.Results.map(({ alt_description, urls, id }) => (
+          <Image
+            url={urls.regular}
+            alt={alt_description}
+            key={id}
+            id={id}
+          ></Image>
+        ))}
+      </div>
+    );
   }
 }
 
