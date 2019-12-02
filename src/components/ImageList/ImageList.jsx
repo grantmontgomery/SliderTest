@@ -10,7 +10,7 @@ class ImageList extends Component {
   imagesRender = () => {
     if (this.props.Results.length > 0) {
       return (
-        <div className="image-slider">
+        <div className="image-slider active-slide">
           <div
             className="image-wrapper"
             style={{
