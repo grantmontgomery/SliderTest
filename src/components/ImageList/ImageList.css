@@ -5,6 +5,8 @@
   border: solid 1px black;
   height: 200px;
   padding: 5px;
+  overflow: hidden;
+  object-fit: cover;
 }
 
 .image-list img {

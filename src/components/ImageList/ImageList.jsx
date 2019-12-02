@@ -9,59 +9,48 @@ class ImageList extends Component {
       index: 0
     };
   }
-  nextItems = event => {
+
+  nextImages = event => {
     event.preventDefault();
-    const { divided } = this.props;
-    this.state.index + 1 < divided.length
-      ? this.setState(() => ({ index: this.state.index + 1 }))
-      : this.setState(() => ({ index: 0 }));
+    let { index } = this.state;
+    const { Results } = this.props;
+    if (index < Results.length - 1) {
+      this.setState(() => ({ index: index + 1 }));
+    }
   };
 
-  previousItems = event => {
-    const { divided } = this.props;
+  previousImage = event => {
     event.preventDefault();
-    this.state.index > 0
-      ? this.setState(() => ({ index: this.state.index - 1 }))
-      : this.setState(() => ({ index: divided.length - 1 }));
+    let { index } = this.state;
+    if (index > 0) {
+      this.setState(() => ({ index: index - 1 }));
+    }
   };
 
-  renderFunctionality = () => {
-    const { divided } = this.props;
-    if (divided.length > 0) {
+  imagesRender = () => {
+    if (this.props.Results.length > 0) {
+      const { alt_description, urls, id } = this.props.Results[
+        this.state.index
+      ];
       return (
-        <React.Fragment>
-          <button className="previous" onClick={e => this.previousItems(e)}>
-            {"<"}
-          </button>
-          {divided[this.state.index].map(
-            ({ image, alt_description, urls, id }) => (
-              <Image
-                url={urls.regular}
-                alt={alt_description}
-                key={id}
-                id={id}
-              ></Image>
-            )
-          )}
-          <button className="next" onClick={e => this.nextItems(e)}>
-            {">"}
-          </button>
-        </React.Fragment>
+        <Image
+          url={urls.regular}
+          alt={alt_description}
+          key={id}
+          id={id}
+        ></Image>
       );
     }
   };
 
   render() {
+    console.log(this.state);
     return (
       <div className="image-list">
-        {this.props.Results.map(({ alt_description, urls, id }) => (
-          <Image
-            url={urls.regular}
-            alt={alt_description}
-            key={id}
-            id={id}
-          ></Image>
-        ))}
+        <button onClick={e => this.previousImage(e)}>{"<"}</button>
+        {this.imagesRender()}
+
+        <button onClick={e => this.nextImages(e)}>{">"}</button>
       </div>
     );
   }
