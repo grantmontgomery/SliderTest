@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Image.css";
 
 class Image extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class Image extends Component {
   render() {
     const { url, alt } = this.props;
     return (
-      <div>
+      <div className="image">
         <img src={url} alt={alt} />
       </div>
     );

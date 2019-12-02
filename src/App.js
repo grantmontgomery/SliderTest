@@ -6,8 +6,8 @@ import { ImageList } from "./components";
 
 class App extends Component {
   state = {
-    divided: [],
-    Results: []
+    Results: [],
+    index: 0
   };
   onSearchSubmit = async term => {
     const response = await unsplash.get(
@@ -16,22 +16,36 @@ class App extends Component {
         params: { query: term }
       }
     );
-    const divided = [];
-    for (let i = 0; i < response.data.results.length; i += 4) {
-      i + 4 < response.data.results.length
-        ? divided.push(response.data.results.slice(i, i + 4))
-        : divided.push(response.data.results.slice(i));
+
+    this.setState({ Results: response.data.results });
+  };
+  nextImages = event => {
+    event.preventDefault();
+    let { index } = this.state;
+    const { Results } = this.state;
+    if (index < Results.length - 1) {
+      this.setState(() => ({ index: index + 1 }));
     }
-    this.setState({ divided: [...divided], Results: response.data.results });
+  };
+
+  previousImage = event => {
+    event.preventDefault();
+    let { index } = this.state;
+    if (index > 0) {
+      this.setState(() => ({ index: index - 1 }));
+    }
   };
 
   render() {
+    console.log(this.state.index);
     return (
       <div className="ui container" style={{ marginTop: "10px" }}>
         <SearchBar onSubmit={this.onSearchSubmit} />
         <br />
 
-        <ImageList Results={this.state.Results} divided={this.state.divided} />
+        <ImageList index={this.state.index} Results={this.state.Results} />
+        <button onClick={e => this.previousImage(e)}>{"<"}</button>
+        <button onClick={e => this.nextImages(e)}>{">"}</button>
       </div>
     );
   }
