@@ -1,0 +1,32 @@
+.image-list {
+  display: flex;
+  flex-flow: row no-wrap;
+  justify-content: center;
+  border: solid 1px black;
+  height: 200px;
+  padding: 5px;
+}
+
+.image-list img {
+  width: 100px;
+  height: auto;
+  margin: 5px;
+}
+
+.next {
+  height: 200px;
+  width: 50px;
+  float: right;
+  right: 5%;
+  position: absolute;
+  margin: 0;
+}
+
+.previous {
+  height: 200px;
+  position: absolute;
+  width: 50px;
+  float: left;
+  left: 5%;
+  margin: 0;
+}
