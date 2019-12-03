@@ -23,17 +23,17 @@ class App extends Component {
     event.preventDefault();
     let { index } = this.state;
     const { Results } = this.state;
-    if (index < Results.length - 1) {
-      this.setState(() => ({ index: index + 1 }));
-    }
+    index + 4 <= Results.length - 4
+      ? this.setState(() => ({ index: index + 4 }))
+      : this.setState(() => ({ index: index + (Results.length - 4 - index) }));
   };
 
   previousImage = event => {
     event.preventDefault();
     let { index } = this.state;
-    if (index > 0) {
-      this.setState(() => ({ index: index - 1 }));
-    }
+    index - 4 >= 0
+      ? this.setState(() => ({ index: index - 4 }))
+      : this.setState(() => ({ index: 0 }));
   };
 
   render() {

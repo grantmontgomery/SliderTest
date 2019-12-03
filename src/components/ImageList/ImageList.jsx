@@ -35,7 +35,6 @@ class ImageList extends Component {
   };
 
   render() {
-    console.log(this.state);
     return <div className="image-list">{this.imagesRender()}</div>;
   }
 }
