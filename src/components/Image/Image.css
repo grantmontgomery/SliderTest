@@ -1,2 +1,36 @@
-.image {
+.card-wrapper {
+  background-color: transparent;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  margin-left: 5px;
+  margin-right: 5px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.flip-front {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-back {
+  background-color: red;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card-wrapper:hover .card-inner {
+  transform: rotateY(180deg);
 }
