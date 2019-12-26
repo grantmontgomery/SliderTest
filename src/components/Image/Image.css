@@ -6,6 +6,7 @@
   margin-left: 5px;
   margin-right: 5px;
   perspective: 1000px;
+  cursor: pointer;
   transition: transform 1s;
 }
 
@@ -26,10 +27,11 @@
 }
 
 .flip-back {
+  background-color: tomato;
   transform: rotateY(180deg);
 }
 
-.flip {
+.flip .card-inner {
   transform: rotateY(180deg);
   transition: transform 1s;
 }
