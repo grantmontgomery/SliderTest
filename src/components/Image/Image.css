@@ -6,6 +6,7 @@
   margin-left: 5px;
   margin-right: 5px;
   perspective: 1000px;
+  transition: transform 1s;
 }
 
 .card-inner {
@@ -16,21 +17,19 @@
   transform-style: preserve-3d;
 }
 
+.flip-back,
 .flip-front {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
 }
 
 .flip-back {
-  background-color: red;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
+  transform: rotateY(180deg);
 }
 
-.card-wrapper:hover .card-inner {
+.flip {
   transform: rotateY(180deg);
+  transition: transform 1s;
 }
