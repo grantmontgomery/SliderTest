@@ -27,7 +27,6 @@
 }
 
 .flip-back {
-  background-color: tomato;
   transform: rotateY(180deg);
 }
 
